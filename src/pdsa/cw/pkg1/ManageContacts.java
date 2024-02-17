@@ -46,5 +46,58 @@ public class ManageContacts {
         }
     }
     
+    public Contact searchContactByID(String ID) {
+        Node current = head;
+        while (current != null) {
+            if (current.contact.getID().equals(ID)) {
+                return current.contact;
+            }
+            current = current.next;
+        }
+        return null; // Contact not found
+    }
+    
+    public Contact searchContactByName(String name) {
+        Node current = head;
+        while (current != null) {
+            if (current.contact.getName().equalsIgnoreCase(name)) {
+                return current.contact;
+            }
+            current = current.next;
+        }
+        return null; // Contact not found
+    }
+    
+    public void editContact(Contact oldContact, Contact newContact) {
+        Node current = head;
+        while (current != null) {
+            if (current.contact == oldContact) {
+                current.contact = newContact;
+                return;
+            }
+            current = current.next;
+        }
+    }
+    
+    public void deleteContact(Contact contact) {
+        Node current = head;
+        while (current != null) {
+            if (current.contact == contact) {
+                if (current.prev != null) {
+                    current.prev.next = current.next;
+                } else {
+                    head = current.next;
+                }
+                if (current.next != null) {
+                    current.next.prev = current.prev;
+                } else {
+                    tail = current.prev;
+                }
+                size--;
+                return;
+            }
+            current = current.next;
+        }
+    }
     
 }

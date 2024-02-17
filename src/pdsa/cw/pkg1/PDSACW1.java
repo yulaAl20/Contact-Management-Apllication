@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package pdsa.cw.pkg1;
+
 import java.util.Scanner;
 
 public class PDSACW1 {
@@ -16,13 +17,17 @@ public class PDSACW1 {
                 System.out.println("Choose an option:");
                 System.out.println("1. Add Contact");
                 System.out.println("2. Display Contacts");
-                System.out.println("3. Exit");
+                System.out.println("3. Search Contact by ID");
+                System.out.println("4. Search Contact by Name");
+                System.out.println("5. Edit Contact");
+                System.out.println("6. Delete Contact");
+                System.out.println("7. Exit");
                 System.out.print("Enter your choice: ");
 
-                // Read user input as a string
+                
                 String input = scanner.nextLine();
 
-                // Parse the input to an integer
+                
                 int choice = Integer.parseInt(input);
 
                 switch (choice) {
@@ -47,12 +52,52 @@ public class PDSACW1 {
                         break;
 
                     case 3:
+                        System.out.print("Enter ID to search: ");
+                        String searchID = scanner.nextLine();
+                        Contact contactByID = manageContacts.searchContactByID(searchID);
+                        if (contactByID != null) {
+                            System.out.println("Contact found:");
+                            System.out.println("Name: " + contactByID.getName());
+                            System.out.println("Phone Number: " + contactByID.getPhoneNumber());
+                            System.out.println("Email: " + contactByID.getEmail());
+                            System.out.println("Address: " + contactByID.getAddress());
+                            System.out.println("ID: " + contactByID.getID());
+                        } else {
+                            System.out.println("Contact not found!");
+                        }
+                        break;
+
+                    case 4:
+                        System.out.print("Enter name to search: ");
+                        String searchName = scanner.nextLine();
+                        Contact contactByName = manageContacts.searchContactByName(searchName);
+                        if (contactByName != null) {
+                            System.out.println("Contact found:");
+                            System.out.println("Name: " + contactByName.getName());
+                            System.out.println("Phone Number: " + contactByName.getPhoneNumber());
+                            System.out.println("Email: " + contactByName.getEmail());
+                            System.out.println("Address: " + contactByName.getAddress());
+                            System.out.println("ID: " + contactByName.getID());
+                        } else {
+                            System.out.println("Contact not found!");
+                        }
+                        break;
+
+                    case 5:
+                        // edit
+                        break;
+
+                    case 6:
+                        // delete
+                        break;
+
+                    case 7:
                         exit = true;
                         System.out.println("Exiting...");
                         break;
 
                     default:
-                        System.out.println("Invalid choice! Please enter a valid option (1, 2, or 3).");
+                        System.out.println("Invalid choice! Please enter a valid option.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a number.");
