@@ -15,6 +15,7 @@ public class PDSACW1 {
         boolean exit = false;
         while (!exit) {
             try {
+                System.out.println("-----------------------------");
                 System.out.println("Choose an option:");
                 System.out.println("1. Add Contact");
                 System.out.println("2. Display Contacts");
