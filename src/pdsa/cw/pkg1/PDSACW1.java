@@ -7,6 +7,7 @@ package pdsa.cw.pkg1;
 import java.util.Scanner;
 
 public class PDSACW1 {
+
     public static void main(String[] args) {
         ManageContacts manageContacts = new ManageContacts();
         Scanner scanner = new Scanner(System.in);
@@ -24,10 +25,7 @@ public class PDSACW1 {
                 System.out.println("7. Exit");
                 System.out.print("Enter your choice: ");
 
-                
                 String input = scanner.nextLine();
-
-                
                 int choice = Integer.parseInt(input);
 
                 switch (choice) {
@@ -62,6 +60,31 @@ public class PDSACW1 {
                             System.out.println("Email: " + contactByID.getEmail());
                             System.out.println("Address: " + contactByID.getAddress());
                             System.out.println("ID: " + contactByID.getID());
+                            System.out.println("1. Edit Contact");
+                            System.out.println("2. Back to Main Menu");
+                            System.out.print("Enter your choice: ");
+                            int editChoice = Integer.parseInt(scanner.nextLine());
+                            switch (editChoice) {
+                                case 1:
+                                    System.out.print("Enter new name: ");
+                                    String newName = scanner.nextLine();
+                                    System.out.print("Enter new phone number: ");
+                                    String newPhoneNumber = scanner.nextLine();
+                                    System.out.print("Enter new email: ");
+                                    String newEmail = scanner.nextLine();
+                                    System.out.print("Enter new address: ");
+                                    String newAddress = scanner.nextLine();
+                                    System.out.print("Enter new ID: ");
+                                    String newID = scanner.nextLine();
+                                    Contact updatedContact = new Contact(newName, newPhoneNumber, newEmail, newAddress, newID);
+                                    manageContacts.editContact(contactByID, updatedContact);
+                                    System.out.println("Contact updated successfully!");
+                                    break;
+                                case 2:
+                                    break; // Back to main menu
+                                default:
+                                    System.out.println("Invalid choice!");
+                            }
                         } else {
                             System.out.println("Contact not found!");
                         }
@@ -78,17 +101,70 @@ public class PDSACW1 {
                             System.out.println("Email: " + contactByName.getEmail());
                             System.out.println("Address: " + contactByName.getAddress());
                             System.out.println("ID: " + contactByName.getID());
+                            System.out.println("1. Edit Contact");
+                            System.out.println("2. Back to Main Menu");
+                            System.out.print("Enter your choice: ");
+                            int editChoice = Integer.parseInt(scanner.nextLine());
+                            switch (editChoice) {
+                                case 1:
+                                    System.out.print("Enter new name: ");
+                                    String newName = scanner.nextLine();
+                                    System.out.print("Enter new phone number: ");
+                                    String newPhoneNumber = scanner.nextLine();
+                                    System.out.print("Enter new email: ");
+                                    String newEmail = scanner.nextLine();
+                                    System.out.print("Enter new address: ");
+                                    String newAddress = scanner.nextLine();
+                                    System.out.print("Enter new ID: ");
+                                    String newID = scanner.nextLine();
+                                    Contact updatedContact = new Contact(newName, newPhoneNumber, newEmail, newAddress, newID);
+                                    manageContacts.editContact(contactByName, updatedContact);
+                                    System.out.println("Contact updated successfully!");
+                                    break;
+
+                                case 2:
+                                    break; // Back to main menu
+                                default:
+                                    System.out.println("Invalid choice!");
+                            }
                         } else {
                             System.out.println("Contact not found!");
                         }
                         break;
 
                     case 5:
-                        // edit
+                        System.out.print("Enter ID of the contact to edit: ");
+                        String editID = scanner.nextLine();
+                        Contact editContact = manageContacts.searchContactByID(editID);
+                        if (editContact != null) {
+                            System.out.print("Enter new name: ");
+                            String newName = scanner.nextLine();
+                            System.out.print("Enter new phone number: ");
+                            String newPhoneNumber = scanner.nextLine();
+                            System.out.print("Enter new email: ");
+                            String newEmail = scanner.nextLine();
+                            System.out.print("Enter new address: ");
+                            String newAddress = scanner.nextLine();
+                            System.out.print("Enter new ID: ");
+                            String newID = scanner.nextLine();
+                            Contact updatedContact = new Contact(newName, newPhoneNumber, newEmail, newAddress, newID);
+                            manageContacts.editContact(editContact, updatedContact);
+                            System.out.println("Contact updated successfully!");
+                        } else {
+                            System.out.println("Contact not found!");
+                        }
                         break;
 
                     case 6:
-                        // delete
+                        System.out.print("Enter ID of the contact to delete: ");
+                        String deleteID = scanner.nextLine();
+                        Contact deleteContact = manageContacts.searchContactByID(deleteID);
+                        if (deleteContact != null) {
+                            manageContacts.deleteContact(deleteContact);
+                            System.out.println("Contact deleted successfully!");
+                        } else {
+                            System.out.println("Contact not found!");
+                        }
                         break;
 
                     case 7:
