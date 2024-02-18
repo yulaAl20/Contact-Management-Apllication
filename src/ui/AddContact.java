@@ -13,7 +13,7 @@ import pdsa.cw.pkg1.ManageContacts;
  *
  * @author User
  */
-public class AddCompany extends javax.swing.JFrame {
+public class AddContact extends javax.swing.JFrame {
 
     private final ManageContacts manageContacts;
     private final JRadioButton rbtnCompany; // Radio button for Company
@@ -23,7 +23,7 @@ public class AddCompany extends javax.swing.JFrame {
     /**
      * Creates new form Add
      */
-    public AddCompany(ManageContacts manageContacts) {
+    public AddContact(ManageContacts manageContacts) {
         this.manageContacts = manageContacts;
 
         initComponents();
@@ -204,21 +204,23 @@ public class AddCompany extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddCompany.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddContact.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddCompany(manageContacts).setVisible(true);
+                new AddContact(manageContacts).setVisible(true);
             }
         });
     }
