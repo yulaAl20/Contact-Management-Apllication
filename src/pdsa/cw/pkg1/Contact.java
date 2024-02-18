@@ -10,14 +10,16 @@ public class Contact {
     private String email;
     private String address;
     private String ID_no;
+    private String contactType;
 
     // Constructor
-    public Contact(String name, String phoneNumber, String email, String address, String ID_no) {
+    public Contact(String name, String phoneNumber, String email, String address, String ID_no, String contactType) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
         this.ID_no = ID_no;
+        this.contactType = contactType;
     }
 
     // Getter methods
@@ -40,6 +42,10 @@ public class Contact {
     public String getID() {
         return ID_no;
     }
+    
+    public String getContactType() {
+        return contactType;
+    }
 
     // Setter methods
     public void setName(String name) {
@@ -60,6 +66,10 @@ public class Contact {
     
     public void setID(String ID_no) {
         this.ID_no = ID_no;
+    }
+    
+     public void setContactType(String contactType) {
+        this.contactType = contactType;
     }
 }
 

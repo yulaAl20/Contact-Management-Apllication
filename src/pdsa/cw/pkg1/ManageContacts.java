@@ -33,7 +33,7 @@ public class ManageContacts {
         } else if (contact.getName().compareToIgnoreCase(root.contact.getName()) > 0) {
             root.right = addContactRecursive(root.right, contact);
         } else {
-            // Handle duplicate contact names (if desired)
+            root.contact = contact;
         }
 
         return root;
