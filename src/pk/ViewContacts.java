@@ -4,8 +4,9 @@
  */
 package pk;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
+import java.util.List;
 
 /**
  *
@@ -25,22 +26,27 @@ public class ViewContacts extends javax.swing.JFrame {
         populateContactsTable();
     }
     
-    private void populateContactsTable() {
-        DefaultTableModel model = (DefaultTableModel) contacts_table.getModel();
-        model.setRowCount(0); // Clear existing rows
+    void populateContactsTable() {
+    DefaultTableModel model = (DefaultTableModel) contacts_table.getModel();
+    model.setRowCount(0); // Clear existing rows
 
-        // Get contacts from ManageContacts and add them to the table model
-        for (Contact contact : manageContacts.getAllContacts()) {
-            model.addRow(new Object[]{
+    List<Contact> allContacts = manageContacts.getAllContacts();
+    for (Contact contact : allContacts) {
+        model.addRow(new Object[]{
                 contact.getName(),
                 contact.getPhoneNumber(),
                 contact.getEmail(),
                 contact.getAddress(),
                 contact.getContactType()
-            });
-        }
+        });
     }
+}
+public void updateContactsTable() {
+        DefaultTableModel model = (DefaultTableModel) contacts_table.getModel();
+        model.setRowCount(0); // Clear existing rows
 
+        populateContactsTable();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,6 +61,8 @@ public class ViewContacts extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         contacts_table = new javax.swing.JTable();
         btn_back = new javax.swing.JButton();
+        btn_delete = new javax.swing.JButton();
+        btn_edit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,21 +72,21 @@ public class ViewContacts extends javax.swing.JFrame {
 
         contacts_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Name ", "Phone number", "E-mail", "Address", "Contact Type"
+                "Name ", "Phone number", "E-mail", "Address", "Contact Type", "Additional notes"
             }
         ));
         jScrollPane1.setViewportView(contacts_table);
@@ -90,31 +98,46 @@ public class ViewContacts extends javax.swing.JFrame {
             }
         });
 
+        btn_delete.setText("Delete Contact");
+
+        btn_edit.setText("Edit Contact");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(216, 216, 216)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(161, 161, 161)
+                .addComponent(btn_back)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_back)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
+                    .addComponent(btn_delete, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                    .addComponent(btn_edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(btn_back)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,8 +145,8 @@ public class ViewContacts extends javax.swing.JFrame {
 
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
         
-        MainPage mainPage = new MainPage(); 
-        mainPage.setVisible(true); 
+        AddContact a1 = new AddContact(manageContacts);
+        a1.setVisible(true); 
         this.dispose();
     }//GEN-LAST:event_btn_backActionPerformed
 
@@ -133,6 +156,8 @@ public class ViewContacts extends javax.swing.JFrame {
     public static void main(String args[]) {
         ManageContacts manageContacts = new ManageContacts(); 
         
+        java.awt.EventQueue.invokeLater(() -> new ViewContacts(manageContacts).setVisible(true));
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -166,6 +191,8 @@ public class ViewContacts extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_back;
+    private javax.swing.JButton btn_delete;
+    private javax.swing.JButton btn_edit;
     private javax.swing.JTable contacts_table;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

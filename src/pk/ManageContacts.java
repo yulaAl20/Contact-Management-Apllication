@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class ManageContacts {
+
     private Node root;
 
     class Node {
+
         Contact contact;
         Node left;
         Node right;
@@ -63,7 +65,7 @@ public class ManageContacts {
             System.out.println("Phone Number: " + root.contact.getPhoneNumber());
             System.out.println("Email: " + root.contact.getEmail());
             System.out.println("Address: " + root.contact.getAddress());
-            System.out.println("ID: " + root.contact.getID());
+            System.out.println("Notes: " + root.contact.getnotes());
             System.out.println("-----------------------");
             inOrderTraversal(root.right);
         }
@@ -85,19 +87,19 @@ public class ManageContacts {
         }
     }
 
-    public Contact searchContactByID(String ID) {
-        return searchContactByIDRecursive(root, ID);
+    public Contact searchContactByphone(String phone) {
+        return searchContactByIDRecursive(root, phone);
     }
 
-    private Contact searchContactByIDRecursive(Node root, String ID) {
-        if (root == null || root.contact.getID().equals(ID)) {
+    private Contact searchContactByIDRecursive(Node root, String phone) {
+        if (root == null || root.contact.getPhoneNumber().equals(phone)) {
             return root == null ? null : root.contact;
         }
 
-        if (ID.compareTo(root.contact.getID()) < 0) {
-            return searchContactByIDRecursive(root.left, ID);
+        if (phone.compareTo(root.contact.getPhoneNumber()) < 0) {
+            return searchContactByIDRecursive(root.left, phone);
         } else {
-            return searchContactByIDRecursive(root.right, ID);
+            return searchContactByIDRecursive(root.right, phone);
         }
     }
 
@@ -116,6 +118,26 @@ public class ManageContacts {
             root.left = editContactRecursive(root.left, oldContact, newContact);
         } else {
             root.right = editContactRecursive(root.right, oldContact, newContact);
+        }
+
+        return root;
+    }
+
+    public void updateContact(Contact oldContact, Contact newContact) {
+        root = updateContactRecursive(root, oldContact, newContact);
+    }
+
+    private Node updateContactRecursive(Node root, Contact oldContact, Contact newContact) {
+        if (root == null) {
+            return null;
+        }
+
+        if (root.contact.equals(oldContact)) {
+            root.contact = newContact;
+        } else if (oldContact.getName().compareToIgnoreCase(root.contact.getName()) < 0) {
+            root.left = updateContactRecursive(root.left, oldContact, newContact);
+        } else {
+            root.right = updateContactRecursive(root.right, oldContact, newContact);
         }
 
         return root;
@@ -158,3 +180,4 @@ public class ManageContacts {
         return minv;
     }
 }
+

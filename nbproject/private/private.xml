@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/PDSA-CW-1/src/ui/AddContact.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/PDSA-CW-1/src/pdsa/cw/pkg1/Contact.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/PDSA-CW-1/src/pdsa/cw/pkg1/PDSACW1.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/PDSA-CW-1/src/pdsa/cw/pkg1/ManageContacts.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/PDSA-CW-1/src/ui/MainPage.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/PDSA-CW-1/src/pk/AddContact.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/PDSA-CW-1/src/pk/MainPage.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/PDSA-CW-1/src/pk/ViewContacts.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/PDSA-CW-1/src/pk/ManageContacts.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/PDSA-CW-1/src/pk/PDSACW1.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/PDSA-CW-1/src/pk/Contact.java</file>
         </group>
     </open-files>
 </project-private>

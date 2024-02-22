@@ -9,16 +9,16 @@ public class Contact {
     private String phoneNumber;
     private String email;
     private String address;
-    private String ID_no;
+    private String notes;
     private String contactType;
 
     // Constructor
-    public Contact(String name, String phoneNumber, String email, String address, String ID_no, String contactType) {
+    public Contact(String name, String phoneNumber, String email, String address, String notes, String contactType) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
-        this.ID_no = ID_no;
+        this.notes = notes;
         this.contactType = contactType;
     }
 
@@ -39,8 +39,8 @@ public class Contact {
         return address;
     }
     
-    public String getID() {
-        return ID_no;
+    public String getnotes() {
+        return notes;
     }
     
     public String getContactType() {
@@ -64,8 +64,8 @@ public class Contact {
         this.address = address;
     }
     
-    public void setID(String ID_no) {
-        this.ID_no = ID_no;
+    public void setnotes(String ID_no) {
+        this.notes = notes;
     }
     
      public void setContactType(String contactType) {
