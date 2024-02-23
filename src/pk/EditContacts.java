@@ -9,16 +9,38 @@ package pk;
  * @author User
  */
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class EditContacts extends javax.swing.JFrame {
-private ManageContacts manageContacts; 
+
+    private ManageContacts manageContacts;
+    private Contact contactToUpdate;
+    private ViewContacts viewContacts;
 
     /**
      * Creates new form EditContacts
      */
-    public EditContacts() {
+    public EditContacts(Contact contact, ManageContacts manageContacts, ViewContacts viewContacts) {
         initComponents();
-        manageContacts = new ManageContacts(); // Initialize manageContacts object
+        this.manageContacts = manageContacts; // Initialize the field with the parameter value
+        this.contactToUpdate = contact;
+        this.viewContacts = viewContacts;
+        populateFieldsWithContactDetails();
+    }
+
+    public void populateFieldsWithContactDetails() {
+        if (contactToUpdate != null) {
+            txt_name.setText(contactToUpdate.getName());
+            txt_phone.setText(contactToUpdate.getPhoneNumber());
+            txt_email.setText(contactToUpdate.getEmail());
+            txt_address.setText(contactToUpdate.getAddress());
+            txt_notes.setText(contactToUpdate.getnotes());
+            if (contactToUpdate.getContactType().equalsIgnoreCase("Company")) {
+                rbtn_Company.setSelected(true);
+            } else {
+                rbtn_person.setSelected(true);
+            }
+        }
 
     }
 
@@ -202,33 +224,27 @@ private ManageContacts manageContacts;
             JOptionPane.showMessageDialog(this, "Please enter a Name or Phone number.");
             return;
         }
-        Contact oldContact = manageContacts.searchContactByName(name); // Find the old contact by name
-
-        if (oldContact == null) {
-            // Optionally, you can display an error message if the contact to edit is not found
-            JOptionPane.showMessageDialog(this, "Contact not found.");
-            return;
-        }
 
         // Create a new contact with the updated details
         Contact newContact = new Contact(name, phone, email, address, notes, contactType);
 
         // Update the contact
-        manageContacts.editContact(oldContact, newContact);
+        manageContacts.editContact(contactToUpdate, newContact);
 
         // Display a message indicating the successful update
         JOptionPane.showMessageDialog(this, "Contact updated successfully.");
 
         // Clear fields after editing contact
         clearFields();
-
+        viewContacts.updateContactsTable();
     }//GEN-LAST:event_btn_editActionPerformed
 
+
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
-        MainPage mainPage = new MainPage();
-        mainPage.setVisible(true);
+        viewContacts.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_backActionPerformed
+
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -242,9 +258,20 @@ private ManageContacts manageContacts;
         txt_notes.setText("");
 
     }
+
     /**
      * @param args the command line arguments
      */
+    private static Contact getUserInputForContact() {
+        String name = JOptionPane.showInputDialog("Enter name:");
+        String phone = JOptionPane.showInputDialog("Enter phone number:");
+        String email = JOptionPane.showInputDialog("Enter email:");
+        String address = JOptionPane.showInputDialog("Enter address:");
+        String notes = JOptionPane.showInputDialog("Enter additional notes:");
+        String contactType = JOptionPane.showInputDialog("Enter contact type (Company/Person):");
+        return new Contact(name, phone, email, address, notes, contactType);
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -280,7 +307,10 @@ private ManageContacts manageContacts;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditContacts().setVisible(true);
+                Contact contact = getUserInputForContact();
+                ManageContacts manageContacts = new ManageContacts(); // Initialize ManageContacts
+                ViewContacts viewContacts = new ViewContacts(manageContacts); // Initialize ViewContacts with ManageContacts
+                new EditContacts(contact, manageContacts, viewContacts).setVisible(true);
             }
         });
     }

@@ -61,18 +61,13 @@ public class ManageContacts {
     private void inOrderTraversal(Node root) {
         if (root != null) {
             inOrderTraversal(root.left);
-            System.out.println("Name: " + root.contact.getName());
-            System.out.println("Phone Number: " + root.contact.getPhoneNumber());
-            System.out.println("Email: " + root.contact.getEmail());
-            System.out.println("Address: " + root.contact.getAddress());
-            System.out.println("Notes: " + root.contact.getnotes());
-            System.out.println("-----------------------");
+            
             inOrderTraversal(root.right);
         }
     }
 
     public Contact searchContactByName(String name) {
-        return searchContactByNameRecursive(root, name);
+        return searchContactByNameRecursive(root,  name.toLowerCase());
     }
 
     private Contact searchContactByNameRecursive(Node root, String name) {
@@ -143,6 +138,7 @@ public class ManageContacts {
         return root;
     }
 
+    /*
     public void deleteContact(Contact contact) {
         root = deleteContactRecursive(root, contact);
     }
@@ -170,6 +166,35 @@ public class ManageContacts {
 
         return root;
     }
+    */
+    public void deleteByName(String name) {
+    root = deleteByNameRecursive(root, name);
+}
+
+private Node deleteByNameRecursive(Node root, String name) {
+    if (root == null) {
+        return null;
+    }
+
+    if (name.compareToIgnoreCase(root.contact.getName()) < 0) {
+        root.left = deleteByNameRecursive(root.left, name);
+    } else if (name.compareToIgnoreCase(root.contact.getName()) > 0) {
+        root.right = deleteByNameRecursive(root.right, name);
+    } else {
+        if (root.left == null) {
+            return root.right;
+        } else if (root.right == null) {
+            return root.left;
+        }
+
+        root.contact = minValue(root.right);
+
+        root.right = deleteByNameRecursive(root.right, root.contact.getName());
+    }
+
+    return root;
+}
+
 
     private Contact minValue(Node root) {
         Contact minv = root.contact;
